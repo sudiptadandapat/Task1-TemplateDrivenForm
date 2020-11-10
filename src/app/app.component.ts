@@ -18,18 +18,25 @@ export class AppComponent {
     name:'',
     email:'',
     gender:'',
-    phoneNo:0
+    phoneNo:0,
+    time:''
     
   }
 
   onSubmit(){
     this.submitted=true;
-    this.user.name=this.signupForm.value.name;
-    this.user.email=this.signupForm.value.email;
-    this.user.gender=this.signupForm.value.gender;
-    this.user.phoneNo=this.signupForm.value.phoneNo;
-    console.log(this.user);
+    this.user = {
+      name: this.signupForm.value.name,
+      email: this.signupForm.value.email,
+      gender: this.signupForm.value.gender,
+      phoneNo: this.signupForm.value.phoneNo,
+      time: new Date().toLocaleString()
+
+    }
+    // console.log(this.user);
     this.entryArray.push(this.user);
+    // console.log(this.entryArray);
+    this.signupForm.reset();
     
   }
 

@@ -4,8 +4,8 @@
 
       <form (ngSubmit)="onSubmit()" #f="ngForm">
 
-        <div class="form-group row">
-          <label for="name" class="col-md-3 col-form-label">Name</label>
+        <div class="form-group row section-title">
+          <label for="name" class="col-md-3 col-form-label ">NAME</label>
           <div class="col-md-9">
             <input type="text" 
             class="form-control" 
@@ -19,8 +19,8 @@
           </div>          
         </div>
 
-        <div class="form-group row">
-          <label for="email" class="col-md-3 col-form-label">Email</label>
+        <div class="form-group row section-title">
+          <label for="email" class="col-md-3 col-form-label">EMAIL</label>
           <div class="col-md-9">
           <input type="email" 
           id="email" 
@@ -42,17 +42,17 @@
           </div>          
         </div>
 
-        <div class="form-group row" >
-          <label class="col-md-3 col-form-label">Gender</label>
-          <div class="col-md-9">
+        <div class="form-group row section-title" >
+          <label class="col-md-3 col-form-label">GENDER</label>
+          <div class="col-md-9 d-flex flex-row">
             <div *ngFor="let gender of genders">
-              <input type="radio" name="gender" [value]="gender" ngModel required>{{gender}}
+              <input class="mr-1" type="radio" name="gender" [value]="gender" ngModel required><span class="mr-3">{{gender}}</span>
             </div>
           </div>                  
         </div>
 
-        <div class="form-group row">
-          <label for="phoneNo" class="col-md-3 col-form-label">Phone Number</label>
+        <div class="form-group row section-title">
+          <label for="phoneNo" class="col-md-3 col-form-label">PHONE NUMBER</label>
           <div class="col-md-9">
             <input type="number" 
             class="form-control" 
@@ -66,20 +66,20 @@
         
         <div class="form-group row">
           <div class="col-md-12">
-            <button class="btn btn-primary mr-2" type="submit" [disabled]="!f.valid">Submit</button>
-            <button class="btn btn-danger" type="button" (click)="onReset()" >Reset</button>
+            <button class="btn btn-primary mr-2 section-title" type="submit" [disabled]="!f.valid">SUBMIT</button>
+            <button class="btn btn-danger section-title" type="button" (click)="onReset()" >RESET</button>
           </div>
         </div>
 
       </form>
     </div>
   </div>
-  <hr>
-  <h3 style="text-align:center;" *ngIf="submitted">Your Data:</h3><br>
+ 
+  <h3 class="head-title mt-4" style="text-align:center;" *ngIf="submitted">Your Data</h3>
     <hr>
     
     <div class="row" *ngIf="submitted" >      
-      <div *ngFor ="let user of entryArray;let i = index">
+      <!-- <div *ngFor ="let user of entryArray;let i = index">
         <div class="col-md-12" >
           <h4>Entry {{i+1}}:</h4>
           <p>User name:{{user.name}} </p>
@@ -87,6 +87,35 @@
           <p>Gender:{{user.gender}} </p>
           <p>Phone Number: {{user.phoneNo}}</p>
         </div>
+      </div> -->
+
+
+      <div class="card-columns">
+        <div *ngFor ="let user of entryArray;let i = index" class="card shadow">
+          <div class="card-header head-title">
+            <h5>Entry {{i+1}}</h5>
+          </div>
+          <div class="card-body">
+            
+            <p class="card-text section-title">Name: <span class="section-title-light">{{user.name}}</span></p>
+            <p class="card-text section-title">Email: <span class="section-title-light"><a href="mailto:{{user.email}}">{{user.email}}</a></span></p>
+            <p class="card-text section-title">Gender: <span class="section-title-light">{{user.gender}}</span></p>
+            <p class="card-text section-title">Phone Number: <span class="section-title-light">{{user.phoneNo}}</span></p>
+            <p class="card-text"><small class="text-muted">Updated on {{ user.time }}</small></p>
+          </div>
+        </div>
+
+        <div class="card bg-primary text-white text-center p-3">
+          <blockquote class="blockquote mb-0">
+            <p class="section-title">Results</p>
+            <footer class="blockquote-footer text-white">
+              <small clas="section-title">
+                Developed by <cite title="Source Title">Sudipta Dandapat</cite>
+              </small>
+            </footer>
+          </blockquote>
+        </div>
+
       </div>
     
     </div>
